@@ -21,7 +21,16 @@ window.addEventListener("load", (_) => {
     canvas2.drawLine(55, 200, 85, 250);
     // square
     canvas2.drawLine(135, 250, 195, 250);
-    canvas2.drawLine(135, 250, 135, 200);
-    canvas2.drawLine(135, 200, 195, 200);
-    canvas2.drawLine(195, 200, 195, 250);
+    canvas2.drawLine(135, 250, 135, 190);
+    canvas2.drawLine(135, 190, 195, 190);
+    canvas2.drawLine(195, 190, 195, 250);
+    // octagon
+    canvas2.drawLine(305, 165, 265, 165);
+    canvas2.drawLine(325, 225, 325, 185);
+    canvas2.drawLine(265, 245, 305, 245);
+    canvas2.drawLine(245, 225, 245, 185);
+    canvas2.drawLine(305, 165, 325, 185);
+    canvas2.drawLine(325, 225, 305, 245);
+    canvas2.drawLine(265, 245, 245, 225);
+    canvas2.drawLine(245, 185, 265, 165);
 });
