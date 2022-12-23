@@ -19,4 +19,9 @@ window.addEventListener("load", (_) => {
     canvas2.drawLine(25, 250, 85, 250);
     canvas2.drawLine(25, 250, 55, 200);
     canvas2.drawLine(55, 200, 85, 250);
+    // square
+    canvas2.drawLine(135, 250, 195, 250);
+    canvas2.drawLine(135, 250, 135, 200);
+    canvas2.drawLine(135, 200, 195, 200);
+    canvas2.drawLine(195, 200, 195, 250);
 });
