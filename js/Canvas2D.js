@@ -13,9 +13,9 @@ class Canvas2D {
      * @param endAngle - end angle of the arc, in radians
      * @param stroke - stroke color
      */
-    drawArc(x, y, radius, startAngle, endAngle, stroke = 'black') {
+    drawArc(x, y, radius, startAngle, endAngle, stroke = 'black', counterclockwise = true) {
         this.context.beginPath();
-        this.context.arc(x, y, radius, startAngle, endAngle);
+        this.context.arc(x, y, radius, startAngle, endAngle, counterclockwise);
         this.context.strokeStyle = stroke;
         this.context.stroke();
     }
