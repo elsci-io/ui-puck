@@ -35,9 +35,18 @@ window.addEventListener("load", (_) => {
         {width: 300, height: 300}
     );
 
-    const sectorAngle = Math.PI /2;
+    /*const sectorAngle = Math.PI /2;
     canvas3.drawArc(150, 150, 50, 0, sectorAngle, '#ff0000', false);
     canvas3.drawArc(150, 150, 50, sectorAngle, sectorAngle*2, '#daff00', false);
     canvas3.drawArc(150, 150, 50, sectorAngle * 2, sectorAngle *3 , '#000dff', false);
     canvas3.drawArc(150, 150, 50, sectorAngle * 3, sectorAngle * 4, '#00ff37', false);
+*/
+
+    const sectorAngle = Math.PI / 6;
+    canvas3.drawArc(150, 150, 50, 0, sectorAngle, null, false);
+    canvas3.drawArc(150, 150, 50, sectorAngle * 2, sectorAngle *3, null, false);
+    canvas3.drawArc(150, 150, 50, sectorAngle * 4 , sectorAngle *5, null, false);
+    canvas3.drawArc(150, 150, 50, sectorAngle * 6, sectorAngle *7, null, false);
+    canvas3.drawArc(150, 150, 50, sectorAngle * 8, sectorAngle *9, null, false);
+    canvas3.drawArc(150, 150, 50, sectorAngle * 10, sectorAngle *11, null, false);
 });
