@@ -1,6 +1,7 @@
 class Canvas2D {
     constructor(parentElement, {width = 150, height = 150} = {}) {
         this.root = this.#createCanvas(parentElement, {width, height});
+        this.size = {width, height};
         this.context = this.root.querySelector('.canvas-component_canvas-2d').getContext('2d');
     }
 
@@ -64,6 +65,19 @@ class Canvas2D {
         this.context.closePath();
         this.context.strokeStyle = stroke;
         this.context.stroke();
+    }
+    drawText(x,y,text, stroke = 'black'){
+        this.context.textAlign = 'center'
+        this.context.fillText(text, x, y);
+
+    }
+
+    clear(){
+        this.context.clearRect(0, 0, this.size.width, this.size.height);
+    }
+
+    getCenter(){
+        return {x: this.size.width / 2, y: this.size.height / 2}
     }
 
     #createCanvas(parentElement, {width, height}) {
