@@ -6,9 +6,14 @@ window.addEventListener("load", (_) => {
     
     function drawPuck(array, cellRadius, canvas) {
         for (let rowIndex = 0; rowIndex < array.length; rowIndex++) {
-            let drawnCells = -array[rowIndex]
+            let drawnCells = 0-array[rowIndex]
             const cells = array[rowIndex];
-            drawnCells = drawnCells + array[rowIndex]
+            drawnCells = drawnCells + array[rowIndex];
+            if (rowIndex>0){
+                drawnCells = drawnCells + array[0]
+            } else{
+                drawnCells = 0
+            }
             _drawRow(rowIndex + 1, cells, cellRadius, canvas, drawnCells);
         }
         const diameter = cellRadius * 2 + 3;
