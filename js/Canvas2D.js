@@ -31,6 +31,13 @@ class Canvas2D {
         this.drawArc(x, y, radius, 0, Math.PI * 2, stroke);
     }
 
+    drawFilledCircle(x, y, radius, color){
+        this.drawCircle(x, y, radius);
+        this.context.fillStyle = color;
+        this.context.fill();
+        this.context.fillStyle = 'black'
+    }
+
     /**
      * x1, y1 - start point; x2, y2 - end point
      * @param x1
