@@ -3,13 +3,7 @@ window.addEventListener("load", (_) => {
         document.querySelector('.canvas-container'),
         { width: 300, height: 300}
     );
-    class DrawnCells{
-        drawnCells;
-        constructor(drawnCells){
-            this.drawnCells = drawnCells
-        }
-    }
-    drawPuck([5,11], [5,6,8,4,2,3,5,13,15,16]);
+    drawPuck([5,11], [1,5,4,3,6]);
     function drawPuck(array, array1){
         let currentCellNumber = 1
         const centerX = canvas.getCenter().x
@@ -19,7 +13,7 @@ window.addEventListener("load", (_) => {
         const cellDiameter = cellRad * 2
         const rad = cellRad + (gap + cellDiameter * array.length) + 3;
         console.log(array.length)   
-        canvas.drawCircle(centerX, centerY,rad)
+        canvas.drawCircle(centerX, centerY, rad)
         for (let rowNumber = 0; rowNumber < array.length; rowNumber++) {      
             for (let cellNumber = 0; cellNumber <  array[rowNumber]; cellNumber++) {
                 const coords = _getCellCoords(rowNumber, array[rowNumber], cellNumber);
@@ -33,7 +27,7 @@ window.addEventListener("load", (_) => {
                 }
 
                 if (isFilled){
-                    canvas.drawFilledCircle(coords.x, coords.y, coords.radius, '#04ff00');
+                    canvas.drawFilledCircle(coords.x, coords.y, coords.radius, '#21e9ff');
                 } else {
                     canvas.drawCircle(coords.x, coords.y, coords.radius);
                 }
