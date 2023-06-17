@@ -1,33 +1,31 @@
-.canvas-component_canvas-2d {
-    border: #ffffff 1px solid;
+.puck {
+    --puck-border: 1px solid rgba(0, 0, 0, 0.6);
+    --puck-selected-color: rgb(6, 95, 212);
+
+    position: relative;
+    border: var(--puck-border);
+    border-radius: 50%;
+    height: 175px;
+    width: 175px;
 }
-.puck{
-  position: relative;
-  height: 300px;
-  width: 300px;
-  border: 1px solid rgb(0, 0, 0);
+
+.puck__cell {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: var(--puck-border);
+    background-color: white;
+    cursor: pointer;
 }
-.puck__cell{
-  position:absolute;
-  border-radius: 50%;
-  width: 30px;
-  border:1px solid black;
-  height: 30px;
+
+.puck__cell:hover {
+    background-color: var(--puck-selected-color);
+    opacity: 0.9;
+    color: white;
 }
-.puck__cell:hover{
-  background-color :#21e9ff;
-  color:black;
-}
-.puck__cell--selected{
-  background-color: rgb(108, 213, 255);
-  color:black
-}
-.circle{
-  border:1px solid rgb(0, 0, 0);
-  border-radius: 50%;
-  position:absolute;
-  top: 62px;
-  left: 62px;
-  height: 175px;
-  width: 175px;
+
+.puck__cell--selected {
+    background-color: var(--puck-selected-color);
+    color: white;
 }
