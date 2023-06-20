@@ -5,8 +5,6 @@
     position: relative;
     border: var(--puck-border);
     border-radius: 50%;
-    height: 175px;
-    width: 175px;
 }
 
 .puck__cell {

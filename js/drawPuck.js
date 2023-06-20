@@ -1,7 +1,15 @@
 window.addEventListener("load", (_) => {
-    const puckElement = document.querySelector('.puck');
+    
+     const puckElement = document.querySelector('.puck');
+    const array = [5,11];
+    const diameter = array.length* 60+30+(6*array.length)+5;
+    const size = diameter + "px"
+    puckElement.style.width = size;
+    puckElement.style.height = size;
     const rect = puckElement.getBoundingClientRect();
     const center = { x: rect.width / 2, y: rect.height / 2 }
+    
+    
 
     function _degreesToRadians(degree) {
         return degree * Math.PI / 180;
@@ -19,7 +27,7 @@ window.addEventListener("load", (_) => {
         const yCoords = centerY + Math.sin(_degreesToRadians(cellAngle - 90)) * rowRadius;
         return new PuckCellCoords(xCoords, yCoords, cellRadius)
     }
-    drawButtonPuck([5, 11])
+    drawButtonPuck(array)
     function drawButtonPuck(array) {
         let currentCellNumber = 1
         for (let rowNumber = 0; rowNumber < array.length; rowNumber++) {
