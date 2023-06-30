@@ -1,7 +1,7 @@
+const selectedCellInexes = [];
+const array = [5, 11];
 window.addEventListener("load", (_) => {
-    
-     const puckElement = document.querySelector('.puck');
-    const array = [5,11];
+    const puckElement = document.querySelector('.puck');
     const diameter = array.length* 60+30+(6*array.length)+5;
     const size = diameter + "px"
     puckElement.style.width = size;
@@ -27,17 +27,20 @@ window.addEventListener("load", (_) => {
         const yCoords = centerY + Math.sin(_degreesToRadians(cellAngle - 90)) * rowRadius;
         return new PuckCellCoords(xCoords, yCoords, cellRadius)
     }
-    drawButtonPuck(array)
-    function drawButtonPuck(array) {
+    drawButtonPuck(array, selectedCellInexes)
+    function drawButtonPuck(array, selectedCellInexes) {
         let currentCellNumber = 1
         for (let rowNumber = 0; rowNumber < array.length; rowNumber++) {
             for (let cellNumber = 0; cellNumber < array[rowNumber]; cellNumber++) {
                 const coords = _getCellCoords(rowNumber, array[rowNumber], cellNumber);
                 puckElement.insertAdjacentHTML('beforeend', '<button class = "puck__cell">' + (currentCellNumber) + '</button>');
                 const lastElement = puckElement.lastElementChild;
+                if(selectedCellInexes.includes(currentCellNumber)){
+                    lastElement.classList.toggle('puck__cell--selected');
+                }
                 lastElement.addEventListener("click", (event) => {
                     const target = event.target;
-                    target.classList.toggle('puck__cell--selected')
+                    target.classList.toggle('puck__cell--selected');
                 });
                 lastElement.style.left = coords.x - 15 + 'px'; // or can be bottom
                 lastElement.style.top = coords.y - 15 + 'px'; // or can be right
