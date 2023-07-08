@@ -7,14 +7,44 @@ class Puck {
         this.rowLengths =rowLengths;
         this.selectedCellIndexes = selectedCellIndexes;
     }
+    draw() {
+        let currentCellNumber = 1;
+        this.#drawPuckCircle();
+        const center = this.#getPuckCenter();
+        for (let rowNumber = 0; rowNumber < this.rowLengths.length; rowNumber++) {
+            for (let cellNumber = this.rowLengths[rowNumber]; cellNumber >= 1; cellNumber--) {
+                
+                this.puckElement.insertAdjacentHTML('beforeend', '<button class = "puck__cell">' + (currentCellNumber) + '</button>');
+                const lastElement = this.puckElement.lastElementChild;
+                
+                if(this.selectedCellIndexes.includes(currentCellNumber)){
+                    lastElement.classList.toggle('puck__cell--selected');
+                }
+
+                lastElement.addEventListener("click", (event) => {
+                    const target = event.target;
+                    target.classList.toggle('puck__cell--selected');
+                    const puck = document.getElementById("puck");
+        
+                    puck.onCellClicked((cellIndex) => {
+                        console.log(cellIndex);
+                    });
+                });
+                const coords = this.#getCellCoords(rowNumber, this.rowLengths[rowNumber], cellNumber, center);
+                lastElement.style.left = coords.x - 15 + 'px'; // or can be bottom
+                lastElement.style.top = coords.y - 15 + 'px'; // or can be right
+                currentCellNumber++;
+            }
+        }
+      
+    }
     #degreesToRadians(degree) {
         return degree * Math.PI / 180;
     }
     #calcCellAngleStep(numberOfCellsInRow) {
         return (360 / numberOfCellsInRow)
     }
-    #getCellCoords(rowNumber, numberOfCells, cellNumber) {
-        const center = this.#getPuckCenter()
+    #getCellCoords(rowNumber, numberOfCells, cellNumber, center) {
         const cellAngle = this.#calcCellAngleStep(numberOfCells) * cellNumber;
         const cellRadius = 15;
         const rowRadius = cellRadius * 2 + 3 + (cellRadius * rowNumber * 2.2);
@@ -32,27 +62,5 @@ class Puck {
         const size = diameter + "px"
         this.puckElement.style.width = size;
         this.puckElement.style.height = size;
-    }
-    drawButtonPuck() {
-        let currentCellNumber = 1
-        for (let rowNumber = 0; rowNumber < this.rowLengths.length; rowNumber++) {
-            for (let cellNumber = 0; cellNumber < this.rowLengths[rowNumber]; cellNumber++) {
-                const coords = this.#getCellCoords(rowNumber, this.rowLengths[rowNumber], cellNumber);
-                this.puckElement.insertAdjacentHTML('beforeend', '<button class = "puck__cell">' + (currentCellNumber) + '</button>');
-                const lastElement = this.puckElement.lastElementChild;
-                
-                // if(this.selectedCellInexes.includes(currentCellNumber)){
-                //     lastElement.classList.toggle('puck__cell--selected');
-                // }
-                this.#drawPuckCircle()
-                lastElement.addEventListener("click", (event) => {
-                    const target = event.target;
-                    target.classList.toggle('puck__cell--selected');
-                });
-                lastElement.style.left = coords.x - 15 + 'px'; // or can be bottom
-                lastElement.style.top = coords.y - 15 + 'px'; // or can be right
-                currentCellNumber++;
-            }
-        }
     }
 }
