@@ -1,25 +1,25 @@
 class Puck {
-    puckElement;
-    rowLengths;
-    selectedCellIndexes;
+    #puckElement;
+    #rowLengths;
+    #selectedCellIndexes;
     #onCellClickCb;
 
     constructor(puckElement,rowLengths, selectedCellIndexes){
-        this.puckElement = puckElement;
-        this.rowLengths =rowLengths;
-        this.selectedCellIndexes = selectedCellIndexes;
+        this.#puckElement = puckElement;
+        this.#rowLengths =rowLengths;
+        this.#selectedCellIndexes = selectedCellIndexes;
     }
     draw() {
         let currentCellNumber = 1;
         this.#drawPuckCircle();
         const center = this.#getPuckCenter();
-        for (let rowNumber = 0; rowNumber < this.rowLengths.length; rowNumber++) {
-            for (let cellNumber = this.rowLengths[rowNumber]; cellNumber >= 1; cellNumber--) {
+        for (let rowNumber = 0; rowNumber < this.#rowLengths.length; rowNumber++) {
+            for (let cellNumber = this.#rowLengths[rowNumber]; cellNumber >= 1; cellNumber--) {
 
-                this.puckElement.insertAdjacentHTML('beforeend', '<button class = "puck__cell">' + (currentCellNumber) + '</button>');
-                const lastElement = this.puckElement.lastElementChild;
+                this.#puckElement.insertAdjacentHTML('beforeend', '<button class = "puck__cell">' + (currentCellNumber) + '</button>');
+                const lastElement = this.#puckElement.lastElementChild;
 
-                if(this.selectedCellIndexes.includes(currentCellNumber)){
+                if(this.#selectedCellIndexes.includes(currentCellNumber)){
                     lastElement.classList.toggle('puck__cell--selected');
                 }
 
@@ -29,7 +29,7 @@ class Puck {
                     if(this.#onCellClickCb)
                         this.#onCellClickCb(parseInt(target.textContent));
                 });
-                const coords = this.#getCellCoords(rowNumber, this.rowLengths[rowNumber], cellNumber, center);
+                const coords = this.#getCellCoords(rowNumber, this.#rowLengths[rowNumber], cellNumber, center);
                 lastElement.style.left = coords.x - 15 + 'px'; // or can be bottom
                 lastElement.style.top = coords.y - 15 + 'px'; // or can be right
                 currentCellNumber++;
@@ -57,14 +57,14 @@ class Puck {
         return new PuckCellCoords(xCoords, yCoords, cellRadius)
     }
     #getPuckCenter(){
-        const rect = this.puckElement.getBoundingClientRect();
+        const rect = this.#puckElement.getBoundingClientRect();
         const center = { x: rect.width / 2, y: rect.height / 2 }
         return center
     }
     #drawPuckCircle(){
-        const diameter = this.rowLengths.length* 60+30+(6*this.rowLengths.length)+5;
+        const diameter = this.#rowLengths.length* 60+30+(6*this.#rowLengths.length)+5;
         const size = diameter + "px"
-        this.puckElement.style.width = size;
-        this.puckElement.style.height = size;
+        this.#puckElement.style.width = size;
+        this.#puckElement.style.height = size;
     }
 }
