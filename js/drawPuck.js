@@ -3,5 +3,14 @@ const array = [5, 11];
 window.addEventListener("load", (_) => {
     const puckElement = document.querySelector('.puck');
     const drawPuck = new Puck(puckElement, array, selectedCellInexes)
-    drawPuck.draw()
+    drawPuck.draw();
+    drawPuck.onCellClick(onCellClick);
 });
+
+/**
+ *
+ * @param {number} cellIndex
+ */
+function onCellClick(cellIndex) {
+    console.info('Clicked on: ' + cellIndex);
+}

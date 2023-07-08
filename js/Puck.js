@@ -2,6 +2,8 @@ class Puck {
     puckElement;
     rowLengths;
     selectedCellIndexes;
+    #onCellClickCb;
+
     constructor(puckElement,rowLengths, selectedCellIndexes){
         this.puckElement = puckElement;
         this.rowLengths =rowLengths;
@@ -13,10 +15,10 @@ class Puck {
         const center = this.#getPuckCenter();
         for (let rowNumber = 0; rowNumber < this.rowLengths.length; rowNumber++) {
             for (let cellNumber = this.rowLengths[rowNumber]; cellNumber >= 1; cellNumber--) {
-                
+
                 this.puckElement.insertAdjacentHTML('beforeend', '<button class = "puck__cell">' + (currentCellNumber) + '</button>');
                 const lastElement = this.puckElement.lastElementChild;
-                
+
                 if(this.selectedCellIndexes.includes(currentCellNumber)){
                     lastElement.classList.toggle('puck__cell--selected');
                 }
@@ -24,11 +26,8 @@ class Puck {
                 lastElement.addEventListener("click", (event) => {
                     const target = event.target;
                     target.classList.toggle('puck__cell--selected');
-                    const puck = document.getElementById("puck");
-        
-                    puck.onCellClicked((cellIndex) => {
-                        console.log(cellIndex);
-                    });
+                    if(this.#onCellClickCb)
+                        this.#onCellClickCb(parseInt(target.textContent));
                 });
                 const coords = this.#getCellCoords(rowNumber, this.rowLengths[rowNumber], cellNumber, center);
                 lastElement.style.left = coords.x - 15 + 'px'; // or can be bottom
@@ -36,8 +35,13 @@ class Puck {
                 currentCellNumber++;
             }
         }
-      
+
     }
+
+    onCellClick(cb) {
+        this.#onCellClickCb = cb;
+    }
+
     #degreesToRadians(degree) {
         return degree * Math.PI / 180;
     }
