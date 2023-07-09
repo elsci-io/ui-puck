@@ -5,7 +5,9 @@ window.addEventListener("load", (_) => {
     const drawPuck = new Puck(puckElement, array, selectedCellInexes)
     drawPuck.draw();
     drawPuck.onCellClick(onCellClick);
+    drawPuck.onCellHover(onCellHover)
 });
+   
 
 /**
  *
@@ -13,4 +15,8 @@ window.addEventListener("load", (_) => {
  */
 function onCellClick(cellIndex) {
     console.info('Clicked on: ' + cellIndex);
+}
+
+function onCellHover(cellIndex) {
+    console.info('Mouse over: ' + cellIndex);
 }

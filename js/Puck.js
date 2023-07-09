@@ -2,8 +2,8 @@ class Puck {
     #puckElement;
     #rowLengths;
     #selectedCellIndexes;
-    #onCellClickCb;
-
+    #onCellClickCb = [];
+    #onCellHoverCb = [];
     constructor(puckElement,rowLengths, selectedCellIndexes){
         this.#puckElement = puckElement;
         this.#rowLengths =rowLengths;
@@ -22,12 +22,17 @@ class Puck {
                 if(this.#selectedCellIndexes.includes(currentCellNumber)){
                     lastElement.classList.toggle('puck__cell--selected');
                 }
-
+                lastElement.addEventListener("mouseover", (event) => {
+                    for (const cb of this.#onCellHoverCb) {
+                        cb(parseInt(event.target.textContent))
+                    }
+                });
                 lastElement.addEventListener("click", (event) => {
-                    const target = event.target;
-                    target.classList.toggle('puck__cell--selected');
-                    if(this.#onCellClickCb)
-                        this.#onCellClickCb(parseInt(target.textContent));
+                    
+                    event.target.classList.toggle('puck__cell--selected');
+                    for (const cb of this.#onCellClickCb) {
+                        cb(parseInt(event.target.textContent))
+                    }
                 });
                 const coords = this.#getCellCoords(rowNumber, this.#rowLengths[rowNumber], cellNumber, center);
                 lastElement.style.left = coords.x - 15 + 'px'; // or can be bottom
@@ -37,9 +42,11 @@ class Puck {
         }
 
     }
-
+    onCellHover(cb) {
+        this.#onCellHoverCb.push(cb);
+    }
     onCellClick(cb) {
-        this.#onCellClickCb = cb;
+        this.#onCellClickCb.push(cb);
     }
 
     #degreesToRadians(degree) {
