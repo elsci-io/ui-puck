@@ -4,11 +4,13 @@ class Puck {
     #selectedCellIndexes;
     #onCellClickCb = [];
     #onCellHoverCb = [];
+
     constructor(puckElement,rowLengths, selectedCellIndexes){
         this.#puckElement = puckElement;
-        this.#rowLengths =rowLengths;
+        this.#rowLengths = rowLengths;
         this.#selectedCellIndexes = selectedCellIndexes;
     }
+
     draw() {
         let currentCellNumber = 1;
         this.#drawPuckCircle();
@@ -28,7 +30,6 @@ class Puck {
                     }
                 });
                 lastElement.addEventListener("click", (event) => {
-                    
                     event.target.classList.toggle('puck__cell--selected');
                     for (const cb of this.#onCellClickCb) {
                         cb(parseInt(event.target.textContent))
@@ -40,7 +41,6 @@ class Puck {
                 currentCellNumber++;
             }
         }
-
     }
     onCellHover(cb) {
         this.#onCellHoverCb.push(cb);
@@ -65,8 +65,7 @@ class Puck {
     }
     #getPuckCenter(){
         const rect = this.#puckElement.getBoundingClientRect();
-        const center = { x: rect.width / 2, y: rect.height / 2 }
-        return center
+        return {x: rect.width / 2, y: rect.height / 2}
     }
     #drawPuckCircle(){
         const diameter = this.#rowLengths.length* 60+30+(6*this.#rowLengths.length)+5;
