@@ -17,8 +17,8 @@ class Puck {
         const center = this.#getPuckCenter();
         for (let rowNumber = 0; rowNumber < this.#rowLengths.length; rowNumber++) {
             for (let cellNumber = this.#rowLengths[rowNumber]; cellNumber >= 1; cellNumber--) {
-
-                this.#puckElement.insertAdjacentHTML('beforeend', '<button class = "puck__cell">' + (currentCellNumber) + '</button>');
+                this.#puckElement.insertAdjacentHTML('beforeend',
+                    `<button class = "puck__cell puck__cell--no-status">${currentCellNumber}</button>`);
                 const lastElement = this.#puckElement.lastElementChild;
 
                 if(this.#selectedCellIndexes.includes(currentCellNumber)){
