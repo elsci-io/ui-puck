@@ -15,8 +15,9 @@
     cursor: pointer;
 }
 .puck__cell--no-status {
-    background-color: rgb(6, 95, 212);
-    color: white;
+    border: 1px black solid;
+    /*background-color: rgb(6, 95, 212);*/
+    color: black;
 }
 .puck__cell--status-success {
     background-color: #299447;
@@ -28,6 +29,7 @@
 }
 
 .puck__cell--disabled {
+    background-color:white;
     color: #bbbbbb;
     border: 1px solid #bbbbbb;
 }

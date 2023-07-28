@@ -1,5 +1,11 @@
+const CLASS_DISABLED = 'puck__cell--disabled';
+
 class Puck {
     #puckElement;
+    #cellElements = [];
+
+    /** @type {[PuckCell]} */
+    #puckCells = [];
     #rowLengths;
     #selectedCellIndexes;
     #onCellClickCb = [];
@@ -10,30 +16,36 @@ class Puck {
         this.#rowLengths = rowLengths;
         this.#selectedCellIndexes = selectedCellIndexes;
     }
-
+    addCell(cellIdx, puckCell){
+        this.#puckCells[cellIdx] = puckCell;
+        const cellElement = this.#cellElements[cellIdx];
+        if(!puckCell.disabled)
+            cellElement.classList.remove(CLASS_DISABLED)
+        cellElement.classList.add(puckCell.cssClass);
+        cellElement.disabled = puckCell.disabled;
+    }
     draw() {
         let currentCellNumber = 1;
         this.#drawPuckCircle();
         const center = this.#getPuckCenter();
         for (let rowNumber = 0; rowNumber < this.#rowLengths.length; rowNumber++) {
             for (let cellNumber = this.#rowLengths[rowNumber]; cellNumber >= 1; cellNumber--) {
+                // by default if it's empty, then it's disabled, then if someone fills the cell, it becomes enabled
                 this.#puckElement.insertAdjacentHTML('beforeend',
-                    `<button class = "puck__cell puck__cell--no-status">${currentCellNumber}</button>`);
+                    `<button class = "puck__cell ${CLASS_DISABLED}">${currentCellNumber}</button>`);
                 const lastElement = this.#puckElement.lastElementChild;
+                lastElement.disabled = true;
 
+                this.#cellElements.push(lastElement);
                 if(this.#selectedCellIndexes.includes(currentCellNumber)){
                     lastElement.classList.toggle('puck__cell--selected');
                 }
                 lastElement.addEventListener("mouseover", (event) => {
-                    for (const cb of this.#onCellHoverCb) {
-                        cb(parseInt(event.target.textContent))
-                    }
+                    this.#callCallbacks(this.#onCellHoverCb, event);
                 });
                 lastElement.addEventListener("click", (event) => {
                     event.target.classList.toggle('puck__cell--selected');
-                    for (const cb of this.#onCellClickCb) {
-                        cb(parseInt(event.target.textContent))
-                    }
+                    this.#callCallbacks(this.#onCellClickCb, event);
                 });
                 const coords = this.#getCellCoords(rowNumber, this.#rowLengths[rowNumber], cellNumber, center);
                 lastElement.style.left = coords.x - 15 + 'px'; // or can be bottom
@@ -49,6 +61,13 @@ class Puck {
         this.#onCellClickCb.push(cb);
     }
 
+    #callCallbacks(callbacks, event) {
+        const cellIdx = parseInt(event.target.textContent) - 1;
+        for (const cb of callbacks) {
+            const puckCell = this.#puckCells[cellIdx];
+            cb(cellIdx, puckCell);
+        }
+    }
     #degreesToRadians(degree) {
         return degree * Math.PI / 180;
     }
