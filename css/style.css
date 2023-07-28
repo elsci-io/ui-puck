@@ -28,6 +28,7 @@
 }
 
 .puck__cell--disabled {
+    background-color:white;
     color: #bbbbbb;
     border: 1px solid #bbbbbb;
 }

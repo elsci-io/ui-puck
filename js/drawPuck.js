@@ -1,4 +1,4 @@
-const selectedCellIndexes = [5];
+const selectedCellIndexes = [];
 window.addEventListener("load", (_) => {
     const redrawBtn = document.getElementById('Re-draw');
     redrawBtn.addEventListener("click", () => {
@@ -15,6 +15,15 @@ function drawPuck() {
     puckElement.replaceChildren();
     const drawPuck = new Puck(puckElement, rowLengths, selectedCellIndexes)
     drawPuck.draw();
+    drawPuck.addCell(1 , new PuckCell(false, 'puck__cell--status-success', '5',null));
+    drawPuck.addCell(2, new PuckCell(false, 'puck__cell--status-success', '5',null))
+    drawPuck.addCell(4, new PuckCell(false, 'puck__cell--status-failed', '5',null))
+    drawPuck.addCell(5, new PuckCell(false, 'puck__cell--status-success', '4',null));
+    drawPuck.addCell(6 , new PuckCell(false, 'puck__cell--status-success', '5',null));
+    drawPuck.addCell(8, new PuckCell(false, 'puck__cell--status-failed', '4',null));
+    drawPuck.addCell(9, new PuckCell(true, 'puck__cell--disabled', '5',null))
+    drawPuck.addCell(11, new PuckCell(true, 'puck__cell--disabled', '5',null));
+    drawPuck.addCell(13, new PuckCell(false, 'puck__cell--status-success', '4',null));
     drawPuck.onCellClick(onCellClick);
     drawPuck.onCellHover(onCellHover)
 }

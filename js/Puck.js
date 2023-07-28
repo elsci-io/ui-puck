@@ -4,13 +4,17 @@ class Puck {
     #selectedCellIndexes;
     #onCellClickCb = [];
     #onCellHoverCb = [];
-
+    #cellElements = [];
     constructor(puckElement,rowLengths, selectedCellIndexes){
         this.#puckElement = puckElement;
         this.#rowLengths = rowLengths;
         this.#selectedCellIndexes = selectedCellIndexes;
     }
-
+    addCell(cellIdx, puckCell){
+        const cellElement = this.#cellElements[cellIdx-1];
+        cellElement.classList.add(puckCell.cssClass);
+        cellElement.disabled = puckCell.disabled
+    }
     draw() {
         let currentCellNumber = 1;
         this.#drawPuckCircle();
@@ -20,7 +24,7 @@ class Puck {
                 this.#puckElement.insertAdjacentHTML('beforeend',
                     `<button class = "puck__cell puck__cell--no-status">${currentCellNumber}</button>`);
                 const lastElement = this.#puckElement.lastElementChild;
-
+                this.#cellElements.push(lastElement);
                 if(this.#selectedCellIndexes.includes(currentCellNumber)){
                     lastElement.classList.toggle('puck__cell--selected');
                 }
@@ -34,6 +38,7 @@ class Puck {
                     for (const cb of this.#onCellClickCb) {
                         cb(parseInt(event.target.textContent))
                     }
+                    
                 });
                 const coords = this.#getCellCoords(rowNumber, this.#rowLengths[rowNumber], cellNumber, center);
                 lastElement.style.left = coords.x - 15 + 'px'; // or can be bottom
