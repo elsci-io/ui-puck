@@ -3,10 +3,9 @@ class PuckCellCoords {
     y;
     radius;
 
-    constructor(x, y, radius, array) {
+    constructor(x, y, radius) {
         this.x = x;
         this.y = y;
-        this.array = array;
         this.radius = radius;
     }
 }
