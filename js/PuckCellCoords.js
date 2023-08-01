@@ -1,4 +1,4 @@
-class PuckCellCoords {
+export default class PuckCellCoords {
     x;
     y;
     radius;

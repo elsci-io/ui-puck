@@ -1,4 +1,4 @@
-class PuckCell {
+export default class PuckCell {
     disabled = false;
     cssClass;
     title;

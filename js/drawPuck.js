@@ -1,3 +1,6 @@
+import Puck from './Puck.js'
+import PuckCell from "./PuckCell.js";
+
 const selectedCellIndexes = [];
 window.addEventListener("load", (_) => {
     const redrawBtn = document.getElementById('Re-draw');
