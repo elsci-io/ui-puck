@@ -2,14 +2,30 @@
   "name": "@elsci-io/ui-puck",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "./src/js/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack serve --open --host 0.0.0.0"
   },
   "keywords": [],
   "author": {
     "name": "Elsci",
     "url": "https://elsci.io"
   },
-  "license": "ISC"
+  "exports": {
+    ".": "./dist/index.bundle.js",
+    "./styles": "./dist/style.bundle.css"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "6.7.3",
+    "html-webpack-plugin": "5.5.3",
+    "mini-css-extract-plugin": "2.7.6",
+    "source-map-loader": "4.0.1",
+    "webpack": "5.82.1",
+    "webpack-cli": "5.1.1",
+    "webpack-dev-server": "4.15.1"
+  }
 }

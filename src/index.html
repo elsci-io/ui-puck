@@ -3,11 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Puck Demo</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/Puck.js"></script>
-    <script src="js/PuckCellCoords.js"></script>
-    <script src="js/drawPuck.js"></script>
-    <script src="js/PuckCell.js"></script>
     <style>
         body {
             width: 400px;
@@ -27,7 +22,6 @@
         .redraw-btn {
             margin-top: 10px;
         }
-        
     </style>
 </head>
 <body class="columns">
@@ -45,5 +39,54 @@
     </div>
     <button class="redraw-btn" id="Re-draw">Re-draw</button>
 </div>
+<script>
+    const selectedCellIndexes = [];
+
+    window.onload = () => {
+        const redrawBtn = document.getElementById('Re-draw');
+        redrawBtn.addEventListener("click", () => {
+            drawPuck();
+        });
+        drawPuck()
+    };
+
+   function drawPuck() {
+        const innerCircleValue = document.getElementById('inner-circle').value;
+        const outerCircleValue = document.getElementById('outer-circle').value;
+        const rowLengths = [parseInt(innerCircleValue), parseInt(outerCircleValue)];
+
+        const puckElement = document.querySelector('.puck');
+        puckElement.replaceChildren();
+        const drawPuck = new Puck.Puck(puckElement, rowLengths, selectedCellIndexes)
+        drawPuck.draw();
+        drawPuck.addCell(0 , new Puck.PuckCell(false, 'puck__cell--status-success', '1',null));
+        drawPuck.addCell(1 , new Puck.PuckCell(false, 'puck__cell--status-success', '2',null));
+        drawPuck.addCell(2, new Puck.PuckCell(false, 'puck__cell--status-success', '3',null))
+        drawPuck.addCell(3, new Puck.PuckCell(false, 'puck__cell--status-success', '4',null))
+        drawPuck.addCell(4, new Puck.PuckCell(false, 'puck__cell--status-failed', '5',null))
+        drawPuck.addCell(5, new Puck.PuckCell(false, 'puck__cell--status-success', '6',null));
+        drawPuck.addCell(6 , new Puck.PuckCell(false, 'puck__cell--status-success', '7',null));
+        drawPuck.addCell(7 , new Puck.PuckCell(false, 'puck__cell--status-success', '8',null));
+        drawPuck.addCell(8, new Puck.PuckCell(false, 'puck__cell--status-failed', '9',null));
+        drawPuck.addCell(9, new Puck.PuckCell(false, 'puck__cell--no-status', '10',null))
+        drawPuck.addCell(10, new Puck.PuckCell(false, 'puck__cell--no-status', '11',null))
+        drawPuck.onCellClick(onCellClick);
+        drawPuck.onCellHover(onCellHover)
+    }
+
+
+    /**
+     *
+     * @param {number} cellIndex
+     * @param {PuckCell | null} cellIndex
+     */
+    function onCellClick(cellIndex, puckCell) {
+        console.info('Clicked on: ' + cellIndex, puckCell);
+    }
+
+    function onCellHover(cellIndex, puckCell) {
+        console.info('Mouse over: ' + cellIndex, puckCell);
+    }
+</script>
 </body>
 </html>

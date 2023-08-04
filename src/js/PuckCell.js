@@ -10,5 +10,4 @@ export default class PuckCell {
         this.title = title;
         this.additionalInfo = additionalInfo;     
     }
-    
 }

@@ -1,6 +1,5 @@
-import PuckCellCoords from './PuckCellCoords.js'
-
-const CLASS_DISABLED = 'puck__cell--disabled';
+import PuckCellCoords from "./PuckCellCoords.js";
+export const CLASS_DISABLED = 'puck__cell--disabled';
 
 export default class Puck {
     #puckElement;
