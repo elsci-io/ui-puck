@@ -57,19 +57,19 @@
 
         const puckElement = document.querySelector('.puck');
         puckElement.replaceChildren();
-        const drawPuck = new Puck.Puck(puckElement, rowLengths, selectedCellIndexes)
+        const drawPuck = new elsciPuck.Puck(puckElement, rowLengths, selectedCellIndexes)
         drawPuck.draw();
-        drawPuck.addCell(0 , new Puck.PuckCell(false, 'puck__cell--status-success', '1',null));
-        drawPuck.addCell(1 , new Puck.PuckCell(false, 'puck__cell--status-success', '2',null));
-        drawPuck.addCell(2, new Puck.PuckCell(false, 'puck__cell--status-success', '3',null))
-        drawPuck.addCell(3, new Puck.PuckCell(false, 'puck__cell--status-success', '4',null))
-        drawPuck.addCell(4, new Puck.PuckCell(false, 'puck__cell--status-failed', '5',null))
-        drawPuck.addCell(5, new Puck.PuckCell(false, 'puck__cell--status-success', '6',null));
-        drawPuck.addCell(6 , new Puck.PuckCell(false, 'puck__cell--status-success', '7',null));
-        drawPuck.addCell(7 , new Puck.PuckCell(false, 'puck__cell--status-success', '8',null));
-        drawPuck.addCell(8, new Puck.PuckCell(false, 'puck__cell--status-failed', '9',null));
-        drawPuck.addCell(9, new Puck.PuckCell(false, 'puck__cell--no-status', '10',null))
-        drawPuck.addCell(10, new Puck.PuckCell(false, 'puck__cell--no-status', '11',null))
+        drawPuck.addCell(0 , new elsciPuck.PuckCell(false, 'puck__cell--status-success', '1',null));
+        drawPuck.addCell(1 , new elsciPuck.PuckCell(false, 'puck__cell--status-success', '2',null));
+        drawPuck.addCell(2, new elsciPuck.PuckCell(false, 'puck__cell--status-success', '3',null))
+        drawPuck.addCell(3, new elsciPuck.PuckCell(false, 'puck__cell--status-success', '4',null))
+        drawPuck.addCell(4, new elsciPuck.PuckCell(false, 'puck__cell--status-failed', '5',null))
+        drawPuck.addCell(5, new elsciPuck.PuckCell(false, 'puck__cell--status-success', '6',null));
+        drawPuck.addCell(6 , new elsciPuck.PuckCell(false, 'puck__cell--status-success', '7',null));
+        drawPuck.addCell(7 , new elsciPuck.PuckCell(false, 'puck__cell--status-success', '8',null));
+        drawPuck.addCell(8, new elsciPuck.PuckCell(false, 'puck__cell--status-failed', '9',null));
+        drawPuck.addCell(9, new elsciPuck.PuckCell(false, 'puck__cell--no-status', '10',null))
+        drawPuck.addCell(10, new elsciPuck.PuckCell(false, 'puck__cell--no-status', '11',null))
         drawPuck.onCellClick(onCellClick);
         drawPuck.onCellHover(onCellHover)
     }
