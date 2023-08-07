@@ -2,10 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <title>Puck Demo</title>
     <style>
-        body {
-            width: 400px;
+        :root {
+            --theme-primary: rgb(6, 95, 212);
+        }
+        *{
+            font-family: 'Lato', sans-serif;
+            line-height: 1.4;
+        }
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        a {
+            color: var(--theme-primary);
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .github-link {
+            margin: 2rem 0;
+            font-size: 1.5rem;
+            text-align: center;
         }
         .rows {
             display: flex;
@@ -15,6 +39,7 @@
         .columns {
             display: flex;
             flex-flow: row;
+            padding: 2rem 0;
         }
         .column {
             flex-grow: 1;
@@ -24,7 +49,12 @@
         }
     </style>
 </head>
-<body class="columns">
+<body >
+<div class="container">
+
+    <h1>Elsci Puck Component</h1>
+    <p class="github-link">Link to the <a href="https://github.com/elsci-io/ui-puck" target="_blank">GitHub repository</a></p>
+    <div class="columns">
 <div class="column">
     <div class="puck" id="puck"></div>
 </div>
@@ -37,7 +67,7 @@
         <label for="outer-circle" class="row">Outer circle</label>
         <input type="number" id="outer-circle" value="11">
     </div>
-    <button class="redraw-btn" id="Re-draw">Re-draw</button>
+    <button class="redraw-btn" id="Re-draw">Re-draw</button></div></div>
 </div>
 <script>
     const selectedCellIndexes = [];
