@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <title>Puck Demo</title>
+    <style>
+        :root {
+            --theme-primary: rgb(6, 95, 212);
+        }
+        *{
+            font-family: 'Lato', sans-serif;
+            line-height: 1.4;
+        }
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        a {
+            color: var(--theme-primary);
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .github-link {
+            margin: 2rem 0;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .rows {
+            display: flex;
+            flex-flow: column;
+            gap: 5px;
+        }
+        .columns {
+            display: flex;
+            flex-flow: row;
+            padding: 2rem 0;
+        }
+        .column {
+            flex-grow: 1;
+        }
+        .redraw-btn {
+            margin-top: 10px;
+        }
+    </style>
+<script defer src="index.bundle.js"></script><link href="style.bundle.css" rel="stylesheet"></head>
+<body >
+<div class="container">
+
+    <h1>Elsci Puck Component</h1>
+    <p class="github-link">Link to the <a href="https://github.com/elsci-io/ui-puck" target="_blank">GitHub repository</a></p>
+    <div class="columns">
+<div class="column">
+    <div class="puck" id="puck"></div>
+</div>
+
+<div class="column">
+    <div class="rows">
+        <label for="inner-circle" class="row">Inner circle</label>
+        <input type="number" id="inner-circle" value="5">
+
+        <label for="outer-circle" class="row">Outer circle</label>
+        <input type="number" id="outer-circle" value="11">
+    </div>
+    <button class="redraw-btn" id="Re-draw">Re-draw</button></div></div>
+</div>
+<script>
+    const selectedCellIndexes = [];
+
+    window.onload = () => {
+        const redrawBtn = document.getElementById('Re-draw');
+        redrawBtn.addEventListener("click", () => {
+            drawPuck();
+        });
+        drawPuck()
+    };
+
+   function drawPuck() {
+        const innerCircleValue = document.getElementById('inner-circle').value;
+        const outerCircleValue = document.getElementById('outer-circle').value;
+        const rowLengths = [parseInt(innerCircleValue), parseInt(outerCircleValue)];
+
+        const puckElement = document.querySelector('.puck');
+        puckElement.replaceChildren();
+        const drawPuck = new elsciPuck.Puck(puckElement, rowLengths, selectedCellIndexes)
+        drawPuck.draw();
+        drawPuck.addCell(0 , new elsciPuck.PuckCell(false, 'puck__cell--status-success', '1',null));
+        drawPuck.addCell(1 , new elsciPuck.PuckCell(false, 'puck__cell--status-success', '2',null));
+        drawPuck.addCell(2, new elsciPuck.PuckCell(false, 'puck__cell--status-success', '3',null))
+        drawPuck.addCell(3, new elsciPuck.PuckCell(false, 'puck__cell--status-success', '4',null))
+        drawPuck.addCell(4, new elsciPuck.PuckCell(false, 'puck__cell--status-failed', '5',null))
+        drawPuck.addCell(5, new elsciPuck.PuckCell(false, 'puck__cell--status-success', '6',null));
+        drawPuck.addCell(6 , new elsciPuck.PuckCell(false, 'puck__cell--status-success', '7',null));
+        drawPuck.addCell(7 , new elsciPuck.PuckCell(false, 'puck__cell--status-success', '8',null));
+        drawPuck.addCell(8, new elsciPuck.PuckCell(false, 'puck__cell--status-failed', '9',null));
+        drawPuck.addCell(9, new elsciPuck.PuckCell(false, 'puck__cell--no-status', '10',null))
+        drawPuck.addCell(10, new elsciPuck.PuckCell(false, 'puck__cell--no-status', '11',null))
+        drawPuck.onCellClick(onCellClick);
+        drawPuck.onCellHover(onCellHover)
+    }
+
+
+    /**
+     *
+     * @param {number} cellIndex
+     * @param {PuckCell | null} cellIndex
+     */
+    function onCellClick(cellIndex, puckCell) {
+        console.info('Clicked on: ' + cellIndex, puckCell);
+    }
+
+    function onCellHover(cellIndex, puckCell) {
+        console.info('Mouse over: ' + cellIndex, puckCell);
+    }
+</script>
+</body>
+</html>
