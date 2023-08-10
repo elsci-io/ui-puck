@@ -1,6 +1,6 @@
 {
   "name": "@elsci-io/ui-puck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Web component to draw Crystallography/Cryo-EM pucks.",
   "type": "module",
   "main": "./src/js/index.js",
@@ -15,7 +15,7 @@
     "url": "https://elsci.io"
   },
   "exports": {
-    ".": "./dist/index.bundle.js",
+    ".": "./src/js/index.js",
     "./styles": "./dist/style.bundle.css"
   },
   "license": "ISC",
