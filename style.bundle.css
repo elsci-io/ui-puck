@@ -35,6 +35,7 @@
     background-color:white;
     color: #bbbbbb;
     border: 1px solid #bbbbbb;
+    pointer-events: none;
 }
 .puck__cell--selected {
     opacity: 1;
