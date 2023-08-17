@@ -16,7 +16,7 @@
   },
   "exports": {
     ".": "./src/js/index.js",
-    "./styles": "./dist/style.bundle.css"
+    "./styles": "./src/css/style.css"
   },
   "license": "ISC",
   "devDependencies": {
