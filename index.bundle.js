@@ -71,7 +71,11 @@ class Puck {
                     this.#callCallbacks(this.#onCellHoverCb, event);
                 });
                 lastElement.addEventListener("click", (event) => {
-                    event.target.classList.toggle('puck__cell--selected');
+                    const selectedCellButton = document.querySelector('.puck__cell--selected');
+                    if (selectedCellButton) {
+                        selectedCellButton.classList.remove('puck__cell--selected')
+                    }
+                    event.target.classList.add('puck__cell--selected');
                     this.#callCallbacks(this.#onCellClickCb, event);
                 });
                 const coords = this.#getCellCoords(rowNumber, this.#rowLengths[rowNumber], cellNumber, center);
