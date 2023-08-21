@@ -57,7 +57,7 @@ class Puck {
         this.updateCellStatus(cellIdx, puckCell);
     }
     updateCellStatus(cellIndex, puckCell){
-        const cellElement = this.#cellElements[cellIdx];
+        const cellElement = this.#cellElements[cellIndex];
         cellElement.classList.remove([...STATUS_CLASS_NAMES.values()]);
         cellElement.classList.add(STATUS_CLASS_NAMES.get(puckCell.status));
     }
