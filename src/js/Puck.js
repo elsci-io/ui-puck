@@ -1,5 +1,8 @@
 import PuckCellCoords from "./PuckCellCoords.js";
 export const CLASS_DISABLED = 'puck__cell--disabled';
+export const STATUS_CLASS_NAMES = new Map(
+    [['DIFFRACTED', 'puck__cell--status-success'],['DIFFRACTION_FAILED', 'puck__cell--status-failed'],['HARVESTED', 'puck__cell--no-status'], ]
+);
 
 export default class Puck {
     #puckElement;
@@ -24,6 +27,12 @@ export default class Puck {
             cellElement.classList.remove(CLASS_DISABLED)
         cellElement.classList.add(puckCell.cssClass);
         cellElement.disabled = puckCell.disabled;
+        this.updateCellStatus(cellIdx, puckCell);
+    }
+    updateCellStatus(cellIndex, puckCell){
+        const cellElement = this.#cellElements[cellIdx];
+        cellElement.classList.remove([...STATUS_CLASS_NAMES.values()]);
+        cellElement.classList.add(STATUS_CLASS_NAMES.get(puckCell.status));
     }
     draw() {
         let currentCellNumber = 1;

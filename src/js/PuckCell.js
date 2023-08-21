@@ -1,13 +1,11 @@
 export default class PuckCell {
     disabled = false;
-    cssClass;
     title;
-    additionalInfo;
+    status;
 
-    constructor(disabled, cssClass, title, additionalInfo){
+    constructor(disabled, title, status){
         this.disabled = disabled;
-        this.cssClass = cssClass;
         this.title = title;
-        this.additionalInfo = additionalInfo;     
+        this.status = status;
     }
 }
