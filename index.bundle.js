@@ -21,11 +21,15 @@ return /******/ (() => { // webpackBootstrap
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CLASS_DISABLED": () => (/* binding */ CLASS_DISABLED),
+/* harmony export */   "STATUS_CLASS_NAMES": () => (/* binding */ STATUS_CLASS_NAMES),
 /* harmony export */   "default": () => (/* binding */ Puck)
 /* harmony export */ });
 /* harmony import */ var _PuckCellCoords_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PuckCellCoords.js */ "./src/js/PuckCellCoords.js");
 
 const CLASS_DISABLED = 'puck__cell--disabled';
+const STATUS_CLASS_NAMES = new Map(
+    [['DIFFRACTED', 'puck__cell--status-success'],['DIFFRACTION_FAILED', 'puck__cell--status-failed'],['HARVESTED', 'puck__cell--no-status'], ]
+);
 
 class Puck {
     #puckElement;
@@ -50,6 +54,12 @@ class Puck {
             cellElement.classList.remove(CLASS_DISABLED)
         cellElement.classList.add(puckCell.cssClass);
         cellElement.disabled = puckCell.disabled;
+        this.updateCellStatus(cellIdx, puckCell);
+    }
+    updateCellStatus(cellIndex, puckCell){
+        const cellElement = this.#cellElements[cellIdx];
+        cellElement.classList.remove([...STATUS_CLASS_NAMES.values()]);
+        cellElement.classList.add(STATUS_CLASS_NAMES.get(puckCell.status));
     }
     draw() {
         let currentCellNumber = 1;
@@ -139,15 +149,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 class PuckCell {
     disabled = false;
-    cssClass;
     title;
-    additionalInfo;
+    status;
 
-    constructor(disabled, cssClass, title, additionalInfo){
+    constructor(disabled, title, status){
         this.disabled = disabled;
-        this.cssClass = cssClass;
         this.title = title;
-        this.additionalInfo = additionalInfo;     
+        this.status = status;
     }
 }
 
